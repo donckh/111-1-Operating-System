@@ -1,0 +1,30 @@
+chmod +x ./sched_demo
+chmod +x ./sched_test.sh
+
+sysctl -a | grep sched
+sudo sysctl -w kernel.sched_rt_runtime_us=1000000
+sudo sysctl -w kernel.sched_rt_runtime_us=950000
+
+kernel.sched_rt_period_us = 1000000
+kernel.sched_rt_runtime_us = 950000
+
+g++ -o hw2 hw2.cpp
+
+sudo ./sched_test.sh ./sched_demo ./hw2
+testcases=("-n 1 -t 0.5 -s NORMAL -p -1"
+           "-n 2 -t 0.5 -s FIFO,FIFO -p 10,20"
+           "-n 3 -t 1.0 -s NORMAL,FIFO,FIFO -p -1,10,30")
+           
+sudo ./sched_demo -n 1 -t 0.5 -s NORMAL -p -1
+sudo ./hw2 -n 1 -t 0.5 -s NORMAL -p -1
+       
+sudo ./sched_demo -n 2 -t 0.5 -s FIFO,FIFO -p 10,20
+sudo ./hw2 -n 2 -t 0.5 -s FIFO,FIFO -p 10,20  
+           
+sudo ./sched_demo -n 3 -t 1.0 -s NORMAL,FIFO,FIFO -p -1,10,30
+sudo ./hw2 -n 3 -t 1.0 -s NORMAL,FIFO,FIFO -p -1,10,30
+
+sudo ./sched_demo -n 4 -t 0.5 -s NORMAL,FIFO,NORMAL,FIFO -p -1,10,-1,30
+sudo ./hw2 -n 4 -t 0.5 -s NORMAL,FIFO,NORMAL,FIFO -p -1,10,-1,30
+
+
