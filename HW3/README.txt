@@ -124,3 +124,5 @@ https://blog.csdn.net/weixin_34067980/article/details/93975353
 kernel method:
 https://stackoverflow.com/questions/27338813/how-to-print-linux-kernel-version-number-in-kernel-module
 
+TA feedback:
+segfaults when running the client & cannot set the mask (-15)
