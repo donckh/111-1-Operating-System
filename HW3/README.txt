@@ -126,3 +126,4 @@ https://stackoverflow.com/questions/27338813/how-to-print-linux-kernel-version-n
 
 TA feedback:
 segfaults when running the client & cannot set the mask (-15)
+Ans: To be written a bitwise function connect with option command
